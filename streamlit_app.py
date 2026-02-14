@@ -89,22 +89,37 @@ if uploaded_file is not None:
             #Perform prediction based on selected model
             y_pred_lr = None
             
+            #Load models and perform prediction
             if option == "Logistic regression":
-                #Load models
-                logisticRegressionModel = joblib.load("model/pkl/logisticRegression.pkl") 
-                y_pred_lr = logisticRegressionModel.predict(x)
+                model = joblib.load("model/pkl/logisticRegression.pkl") 
 
+            if option == "Decision Tree":
+                model = joblib.load("model/pkl/decisionTree.pkl") 
+
+            if option == "kNN":
+                model = joblib.load("model/pkl/knn.pkl") 
+
+            if option == "Naive Bayes":
+                model = joblib.load("model/pkl/naiveBayes.pkl") 
+
+            if option == "Random Forest (Ensemble)":
+                model = joblib.load("model/pkl/randomForest.pkl") 
+
+            if option == "XGBoost (Ensemble)":
+                model = joblib.load("model/pkl/xgboost.pkl") 
+                
+            y_pred = model.predict(x.toarray())
 
             #Metrics
-            if y_pred_lr is not None:
-                accuracy = accuracy_score(y, y_pred_lr)
-                precision = precision_score(y, y_pred_lr, average='weighted', zero_division=0)
-                recall = recall_score(y, y_pred_lr, average='weighted', zero_division=0)
-                f1 = f1_score(y, y_pred_lr, average='weighted', zero_division=0)
-                mcc = matthews_corrcoef(y, y_pred_lr)
+            if y_pred is not None:
+                accuracy = accuracy_score(y, y_pred)
+                precision = precision_score(y, y_pred, average='weighted', zero_division=0)
+                recall = recall_score(y, y_pred, average='weighted', zero_division=0)
+                f1 = f1_score(y, y_pred, average='weighted', zero_division=0)
+                mcc = matthews_corrcoef(y, y_pred)
 
-                y_proba = logisticRegressionModel.predict_proba(x)
-                auc = roc_auc_score(y, y_proba, multi_class='ovr', average='weighted', labels=logisticRegressionModel.classes_)
+                y_proba = model.predict_proba(x.toarray())
+                auc = roc_auc_score(y, y_proba, multi_class='ovr', average='weighted', labels=model.classes_)
 
                 #st.write(f"Accuracy: {accuracy:.4f}")
                 #st.write(f"Precision: {precision:.4f}")
@@ -121,6 +136,12 @@ if uploaded_file is not None:
                     'Score': [accuracy, precision, recall, f1, mcc, auc]
                 })
                 st.table(metrics_df)
+
+                st.write("Confusion Matrix for " + option)
+
+
+                conf_matrix = confusion_matrix(y, y_pred)
+                st.write(conf_matrix)
     else:
         st.info("Model predictions not yet implemented for this option.")
 #else:

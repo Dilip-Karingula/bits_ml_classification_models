@@ -1,0 +1,13 @@
+Streamlit URL :
+https://bitsmlassignment2.streamlit.app/
+
+DEV work space :
+https://studious-umbrella-g49pvxjx7q9gfwwg-8501.app.github.dev/
+https://studious-umbrella-g49pvxjx7q9gfwwg.github.dev/
+
+GIT :
+https://github.com/Dilip-Karingula/bits_ml_classification_models
+
+Local host URL
+http://localhost:8501/
+

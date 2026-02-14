@@ -2,7 +2,7 @@ from click import option
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as mtp
+#import matplotlib.pyplot as mtp
 import pandas as pd
 import joblib
 

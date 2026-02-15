@@ -2,7 +2,7 @@ from click import option
 import streamlit as st
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as mtp
+import matplotlib.pyplot as mtp
 import pandas as pd
 import joblib
 
@@ -119,7 +119,9 @@ if uploaded_file is not None:
                 mcc = matthews_corrcoef(y, y_pred)
 
                 y_proba = model.predict_proba(x.toarray())
-                auc = roc_auc_score(y, y_proba, multi_class='ovr', average='weighted', labels=model.classes_)
+
+                labels = np.unique(y)
+                auc = roc_auc_score(y, y_proba, multi_class='ovr', average='weighted', labels=labels)
 
                 #st.write(f"Accuracy: {accuracy:.4f}")
                 #st.write(f"Precision: {precision:.4f}")

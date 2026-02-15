@@ -24,12 +24,12 @@ This Project aims to implement various ML classification models
           4. Display Confusion matrix or classification report
 
 # 2. Dataset details
-      Description : 
-      Source : 
-      No. of Features : 
-      No. of samples : 
-      Features X : 
-      Output Feature Y : 
+      Description : Data set contain Cricket matches with teams, scores and results details played in worldcup and other series by Men and Women cricket teams. 
+      Source : kaggle
+      No. of Features : 12
+      No. of samples : 3198 
+      Features X : 'tournament_name','team1','team2','venue','innings1_team','innings1_runs','innings1_wkts','innings1_overs','innings2_team','innings2_runs','innings2_wkts','innings2_overs'
+      Output Feature Y : winner
       
 # 3. Models implemented
     - Logistic Regression
